@@ -1,0 +1,63 @@
+if(window['testData'] === undefined) testData = {};
+testData.stock = [
+    {
+      "id": "d0",
+      "type": "Drink",
+      "name": "Gatorade",
+      "count": 10
+    },
+    {
+      "id": "d01",
+      "type": "Drink",
+      "name": "Diet Coke",
+      "count": 15
+    },
+    {
+      "id": "d02",
+      "type": "Drink",
+      "name": "Coke",
+      "count": 15
+    },
+    {
+      "id": "d03",
+      "type": "Drink",
+      "name": "Irn Bru",
+      "count": 15
+    },
+    {
+      "id": "d04",
+      "type": "Drink",
+      "name": "Diet Irn Bru",
+      "count": 15
+    },
+    {
+      "id": "d05",
+      "type": "Drink",
+      "name": "Fanta",
+      "count": 15
+    },
+    {
+      "id": "d06",
+      "type": "Drink",
+      "name": "Water",
+      "count": 15
+    },
+    {
+      "id": "d07",
+      "type": "Drink",
+      "name": "Mountain Dew",
+      "count": 10
+    },
+    {
+      "id": "d08",
+      "type": "Drink",
+      "name": "Pepsi",
+      "count": 12
+    },
+    {
+      "id": "d09",
+      "type": "Drink",
+      "name": "Sprite",
+      "count": 15
+    }
+]
