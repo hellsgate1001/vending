@@ -13,15 +13,15 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
-	<body data-ng-controller="VendingList">
+	<body data-ng-controller="VendingList" data-ng-init="tab = 1">
 
 		<!-- Header -->
 			<section id="header">
 				<nav id="nav">
 					<ul>
-						<li><a href="#one" class="active">Stock</a></li>
-						<li><a href="#two">Sales</a></li>
-						<li><a href="#three">Admin</a></li>
+						<li data-ng-class="{active:tab===1}"><a href data-ng-click="tab = 1">Stock</a></li>
+						<li data-ng-class="{active:tab===2}"><a href data-ng-click="tab = 2">Sales</a></li>
+						<li data-ng-class="{active:tab===3}"><a href data-ng-click="tab = 3">Admin</a></li>
 					</ul>
 				</nav>
 				<footer>
@@ -38,7 +38,7 @@
 					<div id="main">
 
 						<!-- One -->
-						<section id="one">
+						<section id="one" data-ng-show="tab === 1">
 							<div class="container">
 								<header class="major">
 									<h2>Stock</h2>
@@ -63,14 +63,14 @@
 						</section>
 
 						<!-- Two -->
-						<section id="two">
+						<section id="two" data-ng-show="tab === 2">
 							<div class="container">
 								<h3>Sales</h3>
 							</div>
 						</section>
 
 						<!-- Three -->
-						<section id="three">
+						<section id="three" data-ng-show="tab === 3">
 							<div class="container">
 								<h3>Admin</h3>
 							</div>
