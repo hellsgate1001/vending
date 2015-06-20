@@ -20,9 +20,9 @@
 			<section id="header">
 				<nav id="nav">
 					<ul>
-						<li data-ng-class="{active:tab===1}"><a href data-ng-click="tab = 1">Stock</a></li>
-						<li data-ng-class="{active:tab===2}"><a href data-ng-click="tab = 2">Sales</a></li>
-						<li data-ng-class="{active:tab===3}"><a href data-ng-click="tab = 3">Admin</a></li>
+						<li><a href data-ng-click="tab = 1" data-ng-class="{active:tab===1}">Stock</a></li>
+						<li><a href data-ng-click="tab = 2" data-ng-class="{active:tab===2}">Sales</a></li>
+						<li><a href data-ng-click="tab = 3" data-ng-class="{active:tab===3}">Admin</a></li>
 					</ul>
 				</nav>
 				<footer>
@@ -108,12 +108,15 @@
 									<tbody>
 											<tr data-ng-repeat="drink in swp">
 												<td>{{ drink.name }}</td>
-												<td><input type="number" placeholder="{{ drink.price }}" /></td>
+												<td><input id="{{ drink.id }}" class="item_price" type="number" placeholder="{{ drink.price }}" data-ng-pattern="/^[0-9]{1,7}(\.[0-9]+)?$/" /></td>
 											</tr>
 									</tbody>
 									<tfoot>
 										<tr>
-											<td colspan="2"><input type="button" value="Save changes" data-ng-click="editPrices()" /></td>
+											<td colspan="2">
+												<input type="button" value="Save changes" data-ng-click="editPrices()" />
+												<span id="number_warning" class="warning hide">Please use only decimal numbers  for new prices</span>
+											</td>
 										</tr>
 									</tfoot>
 								</table>
@@ -125,7 +128,7 @@
 					<section id="footer">
 						<div class="container">
 							<ul class="copyright">
-								<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 							</ul>
 						</div>
 					</section>
