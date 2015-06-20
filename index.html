@@ -27,7 +27,7 @@
 				</nav>
 				<footer>
 					<ul class="icons">
-						<li><a href="https://github.com/hellsgate1001" class="icon fa-github"><span class="label">Github</span></a></li>
+						<li><a href="https://github.com/hellsgate1001/vending/" class="icon fa-github"><span class="label">Github</span></a></li>
 					</ul>
 				</footer>
 			</section>
@@ -67,6 +67,7 @@
 						<section id="two" data-ng-show="tab === 2">
 							<div class="container">
 								<h3>Sales</h3>
+								<p>Items Left: {{ remainingPercent }}%<span ng-class="{hide: remainingPercent >= 25}" class="warning"> RESTOCKING REQUIRED</span></p>
 								<table>
 									<thead>
 										<tr>

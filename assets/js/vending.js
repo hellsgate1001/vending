@@ -89,6 +89,8 @@ vending.controller('VendingList', function ($scope, $http) {
             $scope.totalSales = totalSales;
             $scope.popularProduct = popularProduct;
             $scope.popularProductPrice = popularProductPrice;
+            // Calculate the percentage of products remaining
+            $scope.remainingPercent = (Math.round(((totalItems - totalSold) / totalItems) * 1000)) / 10;
         }
     }
 
