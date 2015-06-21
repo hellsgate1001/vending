@@ -42,31 +42,31 @@
 						<section id="one" data-ng-show="tab === 1">
 							<div class="container">
 								<header class="major">
-									<h2>Stock</h2>
-									<table>
-										<thead>
-											<tr>
-												<th>Drink</th>
-												<th>Amount</th>
-												<th>Price</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr data-ng-repeat="drink in swp">
-												<td>{{ drink.name }}</td>
-												<td>{{ drink.count }}</td>
-												<td>&#0163;{{ (drink.price / 100).toFixed(2) }}</td>
-											</tr>
-										</tbody>
-									</table>
+									<h3>Stock <a href class="icon fa-bar-chart" data-ng-click="showChart($event)" data-chart="stock"><span class="label">Show Chart</span></a></h3>
 								</header>
-							</div>
+								<table>
+									<thead>
+										<tr>
+											<th>Drink</th>
+											<th>Amount</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr data-ng-repeat="drink in swp">
+											<td>{{ drink.name }}</td>
+											<td>{{ drink.count }}</td>
+											<td>&#0163;{{ (drink.price / 100).toFixed(2) }}</td>
+										</tr>
+									</tbody>
+								</table>
+						</div>
 						</section>
 
 						<!-- Two -->
 						<section id="two" data-ng-show="tab === 2">
 							<div class="container">
-								<h3>Sales</h3>
+								<h3>Sales <a href class="icon fa-bar-chart" data-ng-click="showChart($event)" data-chart="sales"><span class="label">Show Chart</span></a></h3>
 								<p>Items Left: {{ remainingPercent }}%<span ng-class="{hide: remainingPercent >= 25}" class="warning"> RESTOCKING REQUIRED</span></p>
 								<table>
 									<thead>
@@ -135,12 +135,17 @@
 
 			</div>
 
+			<div id="chart-container" data-ng-click="hideChart($event)">
+				<div id="chart"></div>
+			</div>
+
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollzer.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
 			<script src="assets/js/angular.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/highcharts.js"></script>
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>

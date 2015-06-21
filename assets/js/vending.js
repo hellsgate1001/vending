@@ -6,8 +6,10 @@ function isNumber(n) {
 var vending = angular.module('vending', []);
 
 vending.controller('VendingList', function ($scope, $http) {
-    var stock, prices, sales, swp, totalItems, totalSold, totalSales, maxOrders, popularProduct, popularProductPrice;
+    var stock, prices, sales, swp, totalItems, totalSold, totalSales, maxOrders, popularProduct
+        , popularProductPrice, chartCategories, stockData, salesData;
 
+    $scope.chartData = {};
     $scope.editPrices = function() {
         $('#number_warning').addClass('hide');
         /*
@@ -102,9 +104,15 @@ vending.controller('VendingList', function ($scope, $http) {
             // Create the stock with prices variable as an array for easy
             // ordering if required
             swp = [];
+            chartCategories = [];
+            stockData = [];
             $(stock).each(function(index, element){
                 aggregate[element.id] = element;
                 totalItems+= element.count;
+                // Store the item names for the chart labelling
+                chartCategories.push(element.name);
+                // Store the item count for chart display
+                stockData.push(element.count);
             });
             $.each(prices, function(index, element){
                 aggregate[element.id].price = element.price;
@@ -112,6 +120,7 @@ vending.controller('VendingList', function ($scope, $http) {
             });
             $scope.swp = swp;
             $scope.totalItems = totalItems;
+            $scope.chartData['stock'] = stockData;
         }
     }
 
@@ -129,6 +138,7 @@ vending.controller('VendingList', function ($scope, $http) {
             maxOrders = 0;
             popularProduct = '';
             popularProductPrice = 0;
+            salesData = [];
             if (swp) {
                 $(sales).each(function(index, element){
                     aggregate[element.id] = element;
@@ -140,6 +150,8 @@ vending.controller('VendingList', function ($scope, $http) {
                     element.orders = aggregate[element.id].orders;
                     // Update the grand total sales value
                     totalSales+= element.orders.length * element.price;
+                    // Store the item count for chart display
+                    salesData.push((element.orders.length * element.price) / 100);
                 });
             }
 
@@ -148,6 +160,7 @@ vending.controller('VendingList', function ($scope, $http) {
             $scope.totalSales = totalSales;
             $scope.popularProduct = popularProduct;
             $scope.popularProductPrice = popularProductPrice;
+            $scope.chartData['sales'] = salesData;
             // Calculate the percentage of products remaining
             $scope.remainingPercent = (Math.round(((totalItems - totalSold) / totalItems) * 1000)) / 10;
         }
@@ -161,4 +174,54 @@ vending.controller('VendingList', function ($scope, $http) {
     getStock();
     getPrices();
     getSales();
+
+    var chartOptions = {
+        'stock': {
+            'title': 'Starting Stock',
+            'allowDecimals': false,
+            'yAxisTitle': 'Stock',
+            'yAxisFormat': '{value:.0f}'
+        },
+        'sales': {
+            'title': 'Total Sales',
+            'allowDecimals': true,
+            'yAxisTitle': 'Sales value (£)',
+            'yAxisFormat': '{value:.2f}'
+        }
+    }
+
+    $scope.showChart = function($event) {
+        chartType = $($event.target).attr('data-chart');
+        $('#chart').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: chartOptions[chartType]['title']
+            },
+            xAxis: {
+                categories: chartCategories
+            },
+            yAxis: {
+                allowDecimals: chartOptions[chartType]['allowDecimals'],
+                title: {
+                    text: chartOptions[chartType]['yAxisTitle']
+                },
+                labels: {
+                    format: chartOptions[chartType]['yAxisFormat']
+                }
+            },
+            series: [{
+                showInLegend: false,
+                data: $scope.chartData[chartType]
+            }]
+        });
+        $('#chart-container').fadeIn();
+    }
+
+    $scope.hideChart = function($event) {
+        if ($($event.target).attr('id') == 'chart-container') {
+            $('#chart-container').fadeOut();
+        }
+    }
 });
