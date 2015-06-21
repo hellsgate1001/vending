@@ -1,3 +1,10 @@
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 function isNumber(n) {
     // Validate as number
     return !isNaN(parseFloat(n)) && isFinite(n);
@@ -5,7 +12,7 @@ function isNumber(n) {
 
 var vending = angular.module('vending', []);
 
-vending.controller('VendingList', function ($scope, $http) {
+vending.controller('VendingList', function ($scope, $http, $window) {
     var stock, prices, sales, swp, totalItems, totalSold, totalSales, maxOrders, popularProduct
         , popularProductPrice, chartCategories, stockData, salesData;
 
@@ -68,7 +75,7 @@ vending.controller('VendingList', function ($scope, $http) {
     var getSales = function(){
         // Retrieve and process sales information
         var url = '/assets/json/sales.json';
-        return callServer(url, updateSales);
+        return callServer(url, updateSales, true);
     }
 
     var updateStock = function(data, status){
