@@ -1,3 +1,6 @@
+#main > section > .container {
+    padding-top: 1em;
+}
 table tbody tr.popular {
     background-color: #4acaa8;
     color: #ffffff;
@@ -8,4 +11,25 @@ table tbody tr.popular {
 }
 .warning {
     color: #aa0000;
+}
+#one a.icon, #two a.icon {
+    font-size: 0.4em;
+    color: #4a97ca;
+}
+
+#chart-container {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+}
+#chart {
+    width: 60%;
+    height: 40%;
+    position: relative;
+    left: 20%;
+    top: 100px;
 }
