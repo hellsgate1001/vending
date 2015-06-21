@@ -155,10 +155,11 @@ vending.controller('VendingList', function ($scope, $http, $window) {
                 $(swp).each(function(index, element){
                     // Add the order information to the stock item
                     element.orders = aggregate[element.id].orders;
+                    element.totalValue = element.orders.length * element.price;
                     // Update the grand total sales value
-                    totalSales+= element.orders.length * element.price;
-                    // Store the item count for chart display
-                    salesData.push((element.orders.length * element.price) / 100);
+                    totalSales+= element.totalValue;
+                    // Store the item value for chart display
+                    salesData.push(element.totalValue / 100);
                 });
             }
 

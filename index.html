@@ -80,7 +80,7 @@
 										<tr data-ng-repeat="drink in swp" ng-class="{popular: popularProduct===drink.id}" id="sales_{{ drink.name.toLowerCase() }}">
 											<td>{{ drink.name }}</td>
 											<td>{{ drink.orders.length }}</td>
-											<td class="sales_value">&#0163;{{ ((drink.orders.length * drink.price) / 100).toFixed(2) }}</td>
+											<td class="sales_value">&#0163;{{ (drink.totalValue / 100).toFixed(2) }}</td>
 										</tr>
 									</tbody>
 									<tfoot>
