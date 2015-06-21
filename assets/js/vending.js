@@ -216,6 +216,7 @@ vending.controller('VendingList', function ($scope, $http) {
                 data: $scope.chartData[chartType]
             }]
         });
+        $('#chart-container').css('height', $(document).height() + 'px');
         $('#chart-container').fadeIn();
     }
 
