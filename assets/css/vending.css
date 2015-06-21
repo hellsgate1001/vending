@@ -6,6 +6,9 @@ table tbody tr.popular {
     color: #ffffff;
 }
 
+#nav > ul > li > a {
+    cursor: pointer;
+}
 .hide {
     display: none;
 }
@@ -15,6 +18,7 @@ table tbody tr.popular {
 #one a.icon, #two a.icon {
     font-size: 0.4em;
     color: #4a97ca;
+    cursor: pointer;
 }
 
 #chart-container {
@@ -29,7 +33,7 @@ table tbody tr.popular {
 #chart {
     width: 60%;
     height: 40%;
-    position: relative;
+    position: fixed;
     left: 20%;
     top: 100px;
 }
